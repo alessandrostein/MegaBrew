@@ -32,9 +32,22 @@ public class ClienteDAO {
 	public List<Cliente> obterClientes(){			
 		return Clientes;
 	}
+		
+	public Cliente obterClienteID(int id){
+		Cliente retorno = null;
+
+		for (Cliente cliente : Clientes) {
+			if (cliente.getId() == id) {
+				retorno = cliente;
+			}
+		}
+
+		return retorno;
+	}
 	
-	public void adicinarCliente(Cliente cliente){
+	public void adicionarCliente(Cliente cliente){
 		Clientes.add(cliente);
 	}
+
 
 }

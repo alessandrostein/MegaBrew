@@ -3,6 +3,7 @@ package br.com.megabrew.model;
 public class PedidoItem {
 	
 	private int id;
+	private Pedido pedido;
 	private Produto produto;
 	private double quantidade;
 	private double valorUnitario;
@@ -12,10 +13,11 @@ public class PedidoItem {
 		super();
 	}
 
-	public PedidoItem(int id, Produto produto, double quantidade,
-			double valorUnitario, double valorTotal) {
+	public PedidoItem(int id, Pedido pedido, Produto produto,
+			double quantidade, double valorUnitario, double valorTotal) {
 		super();
 		this.id = id;
+		this.pedido = pedido;
 		this.produto = produto;
 		this.quantidade = quantidade;
 		this.valorUnitario = valorUnitario;
@@ -28,6 +30,14 @@ public class PedidoItem {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	public Produto getProduto() {
