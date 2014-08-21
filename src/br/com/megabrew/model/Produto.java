@@ -2,26 +2,36 @@ package br.com.megabrew.model;
 
 public class Produto {
 
+	private int id;
 	private String nome;
 	private String descricao;
 	private String unidadeDeMedida;
 	private String volume;
 	private int quantidade;
 	private Double preco;
-
+	
 	public Produto() {
 		super();
 	}
 
-	public Produto(String nome, String descricao, String unidadeDeMedida,
-			String volume, int quantidade, Double preco) {
+	public Produto(int id, String nome, String descricao,
+			String unidadeDeMedida, String volume, int quantidade, Double preco) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.unidadeDeMedida = unidadeDeMedida;
 		this.volume = volume;
 		this.quantidade = quantidade;
 		this.preco = preco;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -70,6 +80,6 @@ public class Produto {
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
-	}
+	}	
 
 }
