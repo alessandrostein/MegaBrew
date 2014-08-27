@@ -12,25 +12,34 @@ import br.com.megabrew.model.Cliente;
 
 @WebService
 public class ClientesService {
-	
+
 	@WebResult(name = "clientes")
-	public List<Cliente> listarClientes(){
+	public List<Cliente> listarClientes() {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		return clienteDAO.obterClientes();
 	}
-	
-	private ClienteDAO obterDAO(){
+
+	private ClienteDAO obterDAO() {
 		return new ClienteDAO();
 	}
-	
-	public void incluirCliente(@WebParam(name="cliente") Cliente cliente){		
+
+	public void incluirCliente(
+			@WebParam(name = "cliente", header = true) Cliente cliente)
+			throws UsuarioNaoAutorizadoException {
+
+		if (cliente.getLogin().equals("admin")
+				&& cliente.getSenha().equals("admin")) {
 			obterDAO().adicionarCliente(cliente);
-	}
-	
-	public static void main(String[] args){
-		Endpoint.publish("http://localhost:8180/clientes", new ClientesService());
-		System.out.print("Serviço inicializado!");
+		} else {
+			throw new UsuarioNaoAutorizadoException("Nao autorizado");
+		}
+
 	}
 
+	public static void main(String[] args) {
+		Endpoint.publish("http://localhost:8180/clientes",
+				new ClientesService());
+		System.out.print("Serviço inicializado!");
+	}
 
 }

@@ -8,13 +8,14 @@ import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 
 import br.com.megabrew.dao.PedidoDAO;
+import br.com.megabrew.model.Cliente;
 import br.com.megabrew.model.Pedido;
 
 @WebService
 public class PedidosService {
 
-	@WebResult(name = "produtos")
-	public List<Pedido> listarProdutos() {
+	@WebResult(name = "pedidos")
+	public List<Pedido> listarPedidos() {
 		PedidoDAO pedidoDAO = new PedidoDAO();
 		return pedidoDAO.obterPedidos();
 	}
@@ -23,8 +24,15 @@ public class PedidosService {
 		return new PedidoDAO();
 	}
 
-	public void incluirPedido(@WebParam(name = "pedido") Pedido pedido) {
-		obterDAO().adicionarPedido(pedido);
+	public void incluirPedido(@WebParam(name = "pedido") Pedido pedido,
+			@WebParam(name = "cliente", header = true) Cliente cliente)
+			throws UsuarioNaoAutorizadoException {	
+		
+		if (cliente.getLogin().equals("admin") && cliente.getSenha().equals("admin")){
+			obterDAO().adicionarPedido(pedido);
+		} else {
+			throw new UsuarioNaoAutorizadoException("Nao autorizado");
+		}		
 	}
 
 	public static void main(String[] args) {
