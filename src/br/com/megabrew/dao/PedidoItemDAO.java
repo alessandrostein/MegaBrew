@@ -28,6 +28,10 @@ public class PedidoItemDAO {
 	}
 	
 	public void adicionarItem(PedidoItem item){
+		
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		produtoDAO.descontarEstoque(item.getProduto(), item.getQuantidade());
+		
 		PedidoItems.add(item);
 	}
 

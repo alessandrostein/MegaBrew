@@ -5,7 +5,7 @@ public class PedidoItem {
 	private int id;
 	private Pedido pedido;
 	private Produto produto;
-	private double quantidade;
+	private int quantidade;
 	private double valorUnitario;
 	private double valorTotal;
 	
@@ -14,7 +14,7 @@ public class PedidoItem {
 	}
 
 	public PedidoItem(int id, Pedido pedido, Produto produto,
-			double quantidade, double valorUnitario, double valorTotal) {
+			int quantidade, double valorUnitario, double valorTotal) {
 		super();
 		this.id = id;
 		this.pedido = pedido;
@@ -48,11 +48,11 @@ public class PedidoItem {
 		this.produto = produto;
 	}
 
-	public double getQuantidade() {
+	public int getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(double quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
 

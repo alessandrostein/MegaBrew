@@ -55,5 +55,13 @@ public class ProdutoDAO {
 
 		return retorno;
 	}
+	
+	public void descontarEstoque(Produto produtoID, int quantidade){
+		for (Produto produto : Produtos) {
+			if (produto.getId() == produtoID.getId()) {
+				produto.setQuantidade(produto.getQuantidade() - quantidade);
+			}
+		}				
+	}
 
 }
