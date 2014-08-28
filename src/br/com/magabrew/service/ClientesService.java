@@ -9,6 +9,7 @@ import javax.xml.ws.Endpoint;
 
 import br.com.megabrew.dao.ClienteDAO;
 import br.com.megabrew.model.Cliente;
+import br.com.megabrew.model.Pedido;
 
 @WebService
 public class ClientesService {
@@ -23,16 +24,16 @@ public class ClientesService {
 		return new ClienteDAO();
 	}
 
-	public void incluirCliente(
-			@WebParam(name = "cliente", header = true) Cliente cliente)
+	public void incluirCliente(@WebParam(name = "cliente") Cliente cliente,
+			@WebParam(name = "cliente", header = true) Cliente aut)
 			throws UsuarioNaoAutorizadoException {
 
-		if (cliente.getLogin().equals("admin")
-				&& cliente.getSenha().equals("admin")) {
+		if (obterDAO().autenticarCliente(cliente)) {
 			obterDAO().adicionarCliente(cliente);
 		} else {
 			throw new UsuarioNaoAutorizadoException("Nao autorizado");
 		}
 
 	}
+
 }

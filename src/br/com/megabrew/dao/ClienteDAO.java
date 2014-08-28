@@ -28,12 +28,12 @@ public class ClienteDAO {
 		Clientes.add(cliente5);
 
 	}
-	
-	public List<Cliente> obterClientes(){			
+
+	public List<Cliente> obterClientes() {
 		return Clientes;
 	}
-		
-	public Cliente obterClienteID(int id){
+
+	public Cliente obterClienteID(int id) {
 		Cliente retorno = null;
 
 		for (Cliente cliente : Clientes) {
@@ -44,10 +44,23 @@ public class ClienteDAO {
 
 		return retorno;
 	}
-	
-	public void adicionarCliente(Cliente cliente){
+
+	public void adicionarCliente(Cliente cliente) {
 		Clientes.add(cliente);
 	}
 
+	public boolean autenticarCliente(Cliente cliente) {
 
+		boolean retorno = false;
+
+		for (Cliente cli : Clientes) {
+			if ((cli.getId() == cliente.getId())
+					&& (cli.getLogin().equals(cliente.getLogin()))
+					&& (cli.getSenha().equals(cliente.getSenha()))) {
+				retorno = true;
+
+			}
+		}
+		return retorno;
+	}
 }
