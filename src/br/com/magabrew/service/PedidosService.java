@@ -48,9 +48,5 @@ public class PedidosService {
 		}
 	}
 
-	public static void main(String[] args) {
-		Endpoint.publish("http://localhost:8180/pedidos", new PedidosService());
-		System.out.print("Serviço inicializado!");
-	}
 
 }

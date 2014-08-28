@@ -35,10 +35,5 @@ public class ProdutosService {
 		}				
 	}
 
-	public static void main(String[] args) {
-		Endpoint.publish("http://localhost:8180/produtos",
-				new ProdutosService());
-		System.out.print("Serviço inicializado!");
-	}
 
 }

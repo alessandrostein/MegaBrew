@@ -35,11 +35,4 @@ public class ClientesService {
 		}
 
 	}
-
-	public static void main(String[] args) {
-		Endpoint.publish("http://localhost:8180/clientes",
-				new ClientesService());
-		System.out.print("Serviço inicializado!");
-	}
-
 }

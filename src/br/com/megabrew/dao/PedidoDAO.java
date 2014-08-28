@@ -67,4 +67,8 @@ public class PedidoDAO {
 	public void adicionarPedido(Pedido pedido){
 		Pedidos.add(pedido);
 	}
+	
+	public void descontarEstoque(Pedido pedido){
+		
+	}
 }
