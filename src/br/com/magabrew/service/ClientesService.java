@@ -28,7 +28,7 @@ public class ClientesService {
 			@WebParam(name = "cliente", header = true) Cliente aut)
 			throws UsuarioNaoAutorizadoException {
 
-		if (obterDAO().autenticarCliente(cliente)) {
+		if (obterDAO().autenticarCliente(aut)) {
 			obterDAO().adicionarCliente(cliente);
 		} else {
 			throw new UsuarioNaoAutorizadoException("Nao autorizado");
