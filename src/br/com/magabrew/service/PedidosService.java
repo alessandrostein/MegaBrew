@@ -8,8 +8,10 @@ import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
 
 import br.com.megabrew.dao.PedidoDAO;
+import br.com.megabrew.dao.ProdutoDAO;
 import br.com.megabrew.model.Cliente;
 import br.com.megabrew.model.Pedido;
+import br.com.megabrew.model.PedidoItem;
 
 @WebService
 public class PedidosService {
@@ -23,8 +25,10 @@ public class PedidosService {
 	private PedidoDAO obterDAOPedido() {
 		return new PedidoDAO();
 	}
-
-
+	
+	private ProdutoDAO obterDAOProduto(){
+		return new ProdutoDAO();
+	}
 
 	public void incluirPedido(@WebParam(name = "pedido") Pedido pedido,
 			@WebParam(name = "cliente", header = true) Cliente cliente)
@@ -32,6 +36,11 @@ public class PedidosService {
 
 		if (cliente.getLogin().equals("admin")
 				&& cliente.getSenha().equals("admin")) {
+			
+			for (PedidoItem item: pedido.getItem()) {
+				obterDAOProduto().descontarEstoque(item.getId(), item.getQuantidade());				
+			}
+			
 			obterDAOPedido().adicionarPedido(pedido);		
 
 		} else {
