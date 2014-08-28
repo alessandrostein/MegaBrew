@@ -7,8 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 public class PedidoItem {
 	
 	private int id;
-	private Pedido pedido;
-	private Produto produto;
+	private int produtoID;
 	private int quantidade;
 	private double valorUnitario;
 	private double valorTotal;
@@ -17,12 +16,11 @@ public class PedidoItem {
 		super();
 	}
 
-	public PedidoItem(int id, Pedido pedido, Produto produto,
+	public PedidoItem(int id, int produtoID,
 			int quantidade, double valorUnitario, double valorTotal) {
 		super();
 		this.id = id;
-		this.pedido = pedido;
-		this.produto = produto;
+		this.produtoID = produtoID;
 		this.quantidade = quantidade;
 		this.valorUnitario = valorUnitario;
 		this.valorTotal = valorTotal;
@@ -34,22 +32,14 @@ public class PedidoItem {
 
 	public void setId(int id) {
 		this.id = id;
+	}	
+
+	public int getProdutoID() {
+		return produtoID;
 	}
 
-	public Pedido getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProduto(int produtoID) {
+		this.produtoID = produtoID;
 	}
 
 	public int getQuantidade() {

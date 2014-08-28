@@ -1,6 +1,6 @@
 package br.com.megabrew.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -11,22 +11,22 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 public class Pedido {
 
 	private int id;
-	private Cliente cliente;
+	private int clienteID;
 	private double valorTotal;
 	
 	@XmlElementWrapper(name = "itens")
 	@XmlElement(name = "item")
-	private ArrayList<PedidoItem> item;
+	private List<PedidoItem> item;
 	
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(int id, Cliente cliente, double valorTotal,
-			ArrayList<PedidoItem> item) {
+	public Pedido(int id, int clienteID, double valorTotal,
+			List<PedidoItem> item) {
 		super();
 		this.id = id;
-		this.cliente = cliente;
+		this.clienteID = clienteID;
 		this.valorTotal = valorTotal;
 		this.item = item;
 	}
@@ -39,12 +39,12 @@ public class Pedido {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public int getClienteID() {
+		return clienteID;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCliente(int clienteID) {
+		this.clienteID = clienteID;
 	}
 
 	public double getValorTotal() {
@@ -55,11 +55,11 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
-	public ArrayList<PedidoItem> getItem() {
+	public List<PedidoItem> getItem() {
 		return item;
 	}
 
-	public void setItem(ArrayList<PedidoItem> item) {
+	public void setItem(List<PedidoItem> item) {
 		this.item = item;
 	}
 		
