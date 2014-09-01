@@ -1,11 +1,13 @@
 package br.com.megabrew.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Pedido {
@@ -17,6 +19,9 @@ public class Pedido {
 	@XmlElementWrapper(name = "itens")
 	@XmlElement(name = "item")
 	private List<PedidoItem> item;
+	
+	@XmlJavaTypeAdapter(AdaptadorDate.class)	
+	private Date dataDeCriacao = new Date();	
 	
 	public Pedido() {
 		super();
@@ -43,7 +48,7 @@ public class Pedido {
 		return clienteID;
 	}
 
-	public void setCliente(int clienteID) {
+	public void setClienteID(int clienteID) {
 		this.clienteID = clienteID;
 	}
 
@@ -62,5 +67,13 @@ public class Pedido {
 	public void setItem(List<PedidoItem> item) {
 		this.item = item;
 	}
-		
+	
+	public Date getDataDeCriacao() {
+		return dataDeCriacao;
+	}
+
+	public void setDataDeCriacao(Date dataDeCriacao) {
+		this.dataDeCriacao = dataDeCriacao;
+	}
+
 }

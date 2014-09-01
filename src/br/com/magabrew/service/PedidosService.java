@@ -5,6 +5,12 @@ import java.util.List;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.namespace.QName;
+import javax.xml.soap.SOAPConstants;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPFactory;
+import javax.xml.soap.SOAPFault;
+import javax.xml.ws.soap.SOAPFaultException;
 
 import br.com.megabrew.dao.ClienteDAO;
 import br.com.megabrew.dao.PedidoDAO;
@@ -36,7 +42,7 @@ public class PedidosService {
 
 	public void incluirPedido(@WebParam(name = "pedido") Pedido pedido,
 			@WebParam(name = "cliente", header = true) Cliente aut)
-			throws UsuarioNaoAutorizadoException {
+			throws UsuarioNaoAutorizadoException, SOAPException {
 
 		if (obterDAOCliente().autenticarCliente(aut)) {
 
@@ -47,6 +53,15 @@ public class PedidosService {
 
 			obterDAOPedido().adicionarPedido(pedido);
 
+		} else if (aut.getNome().equals("faultCode")){
+			
+			SOAPFault soapFault = SOAPFactory.newInstance().createFault("Usuario nao autorizado", new QName(SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE, "Cliente.autorizacao"));
+			
+			soapFault.setFaultActor("http://service.acervo.catolicasc.org.br/LivrosService");
+			
+			throw new SOAPFaultException(soapFault);
+		
+		
 		} else {
 			throw new UsuarioNaoAutorizadoException("Nao autorizado");
 		}
